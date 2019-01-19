@@ -1,0 +1,71 @@
+[variables]
+
+let: variable values
+
+const: constant values
+
+------------------------------------------------
+[arrow functions]
+
+const myFnc = () => {
+
+}
+
+- Fixes issues with the this variable
+
+arrow function with parameters:
+
+const myFnc = (number1, number2) => {
+
+}
+
+arrow function in single line:
+
+const myFnc = (number) => number * 2;
+
+------------------------------------------------
+[exports & imports]
+
+(Export)
+const person = {
+    name: 'Griffin'
+}
+export default person
+
+(Import)
+import person from './person.js'
+//does not need to be named person because it is grabbing the default of the file.
+
+(Export)
+export const baseData = 10;
+
+(Import)
+import {baseData from './utility.js'}
+
+------------------------------------------------
+[Classes, Properties & Methods]
+
+properties: like variables attached to Classes
+
+methods: like functions attached to Classes
+
+super();
+-if you are extending a class and using the parent's class you need to call super() in the constructor of the child
+
+------------------------------------------------
+[Spread & Rest Operations]
+
+...
+
+Spread: Used to split up array elements OR object properties
+const numbers [...array, 4, 5];
+const newPerson = {
+    ...person,
+    age = 23
+}
+
+Rest: Used to merge a list of function arguments into an array
+const filter = (...args) => {
+    return args.filter( el => el === 1);
+}
+filter(1, 2, 3)
