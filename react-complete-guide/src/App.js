@@ -52,13 +52,7 @@ class App extends Component {
   // Whenever react re-renders this component, this entire render() function is called
   render() {
     let personList = null;
-
-    const buttonStyle = {
-      backgroundColor: 'green',
-      color: 'white',
-      border: '1px solid blue',
-      padding: '8px',
-    };
+    let buttonClass = '';
 
     if(this.state.showPersons){
       personList =(
@@ -77,22 +71,15 @@ class App extends Component {
           })}
         </div>
       );
-      buttonStyle.backgroundColor = 'red';
-    }
 
-    const dynamicClasses = [];
-    if(this.state.persons.length <= 2){
-      dynamicClasses.push('red');
+      buttonClass = classes.red;
     }
-    if(this.state.persons.length <= 1){
-      dynamicClasses.push('bold');
-    }
-
+  
     return (
         <div className={classes.App}>
             <h1>Hi, I'm a React App!</h1>
-            <p className={dynamicClasses.join(' ')}>Dynamic Classes</p>
-            <button style={buttonStyle} onClick={this.togglePersonHandler}>Toggle Persons</button>
+            <p>Dynamic Classes</p>
+            <button className={buttonClass} onClick={this.togglePersonHandler}>Toggle Persons</button>
             {personList}
         </div>
     );
