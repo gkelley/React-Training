@@ -9,11 +9,22 @@ class App extends Component {
     persons : [
       { id: '1234', name: "Griffin", age:'23'},
       { id: '4567', name: "Cory", age:'22'},
-      { id: '2342', name: "Jim", age:'60'},
     ],
     showPersons: false,
   }
 
+  switchNameHandler = (newName) => {
+    // console.log("Clicked")
+    // DO NOT DO THIS: this.state.persons[0].name = "Griffin Gluek Kelley";
+    // Only changing state or props causes react to re-render the page in browser.
+    this.setState({
+      persons:  [
+        { id: '1234', name: newName, age:'23'},
+        { id: '4567', name: "Cory Welper", age:'22'}
+      ],
+    });
+  }
+   
   nameChangedHandler = (event, id) => { 
 
     const personIndex = this.state.persons.findIndex(person => {
@@ -52,14 +63,6 @@ class App extends Component {
   // Whenever react re-renders this component, this entire render() function is called
   render() {
     let personList = null;
-
-    const buttonStyle = {
-      backgroundColor: 'green',
-      color: 'white',
-      border: '1px solid blue',
-      padding: '8px',
-    };
-
     if(this.state.showPersons){
       personList =(
         <div >
@@ -75,26 +78,33 @@ class App extends Component {
                 key={person.id}/>
             );
           })}
+          
+          {/* <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age}
+            // Recommended To Use Bind Over The Arrow Function above due to efficiency
+            changed={this.nameChangedHandler}
+            click={this.switchNameHandler.bind(this, "Griffin!!")}>
+            I am a child element.
+          </Person>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/> 
+          */}
+
         </div>
       );
-      buttonStyle.backgroundColor = 'red';
     }
-
-    const dynamicClasses = [];
-    if(this.state.persons.length <= 2){
-      dynamicClasses.push('red');
-    }
-    if(this.state.persons.length <= 1){
-      dynamicClasses.push('bold');
-    }
-
     return (
-        <div className="App">
-            <h1>Hi, I'm a React App!</h1>
-            <p className={dynamicClasses.join(' ')}>Dynamic Classes</p>
-            <button style={buttonStyle} onClick={this.togglePersonHandler}>Toggle Persons</button>
-            {personList}
-        </div>
+      <div className="App">
+        <h1>Hi, I'm a React App!</h1>
+        <button onClick={ () => this.switchNameHandler("Griffin Gluek")}>Switch Name</button>
+        <button onClick={this.togglePersonHandler}>Toggle Persons</button>
+        {
+          /* Cannot use if statements in here, only ternary expressions */
+          //this.state.showPersons ? personList : <p>Hidden List</p>
+          personList
+        }
+        
+      </div>
     );
   }
 }
