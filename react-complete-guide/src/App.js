@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person.js'
 
 // This is a container class because we are manipulating the state.
@@ -89,7 +89,7 @@ class App extends Component {
     }
 
     return (
-        <div className="App">
+        <div className={classes.App}>
             <h1>Hi, I'm a React App!</h1>
             <p className={dynamicClasses.join(' ')}>Dynamic Classes</p>
             <button style={buttonStyle} onClick={this.togglePersonHandler}>Toggle Persons</button>
