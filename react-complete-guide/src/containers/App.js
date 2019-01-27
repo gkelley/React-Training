@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person.js';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary.js';
+import Persons from '../components/Persons/Persons.js';
+import Cockpit from '../components/Cockpit/Cockpit.js';
 
 // This is a container class because we are manipulating the state.
 class App extends Component {
@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   nameChangedHandler = (event, id) => { 
-
     const personIndex = this.state.persons.findIndex(person => {
       return person.id === id;
     });
@@ -36,7 +35,6 @@ class App extends Component {
     // slice() / ...spread copies the old array to avoid manipulating the state directly
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
-
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
   }
@@ -53,36 +51,23 @@ class App extends Component {
   // Whenever react re-renders this component, this entire render() function is called
   render() {
     let personList = null;
-    let buttonClass = '';
 
     if(this.state.showPersons){
       personList =(
-        <div >
-
-          {/* map() every in an array into something else  (Similar to foreach) */}
-          {this.state.persons.map( (person, index) => {
-            return(
-              <ErrorBoundary  key={person.id}>
-                <Person 
-                  name={person.name} 
-                  age={person.age}
-                  click={ () => this.deletePersonHandler(index)}
-                  changed={(event) => this.nameChangedHandler(event, person.id)}
-                 />
-              </ErrorBoundary>
-            );
-          })}
-        </div>
+        <Persons 
+          persons={this.state.persons} 
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}/>
       );
-
-      buttonClass = classes.red;
     }
   
     return (
         <div className={classes.App}>
-            <h1>Hi, I'm a React App!</h1>
-            <p>Dynamic Classes</p>
-            <button className={buttonClass} onClick={this.togglePersonHandler}>Toggle Persons</button>
+            <Cockpit 
+              showPersons={this.state.showPersons}
+              persons={this.state.persons}
+              clicked={this.togglePersonHandler}/>
+
             {personList}
         </div>
     );
