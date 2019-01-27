@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person.js';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary.js';
+import Person from '../components/Persons/Person/Person.js';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary.js';
 
 // This is a container class because we are manipulating the state.
 class App extends Component {
