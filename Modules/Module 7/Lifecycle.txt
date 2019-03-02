@@ -1,0 +1,41 @@
+[Stateful Components]
+
+Containers / Class Components should manage the state.
+-Access To State
+-Access to Lifecycle hooks
+-Access to state and props via this
+
+--------------------------------------------------
+[Stateless Components]
+
+Functional comonents should NOT change states.
+Make functional components as much as possible.
+
+-No Access to State
+-No Lifecycle hooks
+-Access to props
+
+
+--------------------------------------------------
+[Component Lifecycle]
+
+During Lifecycle phases we can have react execute code.
+Only avaliable in stateful comonents.
+
+constructor(props)
+- CALL super(props)
+- DO SET UP State
+    
+componentWillMounut()
+- UPDATE state, last minute optimization
+- not very useful
+
+render()
+- PREPARE your JSX code
+- defines how the component should look from a HTMl view
+
+renderChildComponents
+
+componentDidMount()
+- DO Cause side-effects (Make web calls)
+- DO NOT update state (triggers re-render)
