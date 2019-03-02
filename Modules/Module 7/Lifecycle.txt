@@ -36,6 +36,26 @@ render()
 
 renderChildComponents
 
-componentDidMount()
+componentDidMount() **** (Important) ****
 - DO Cause side-effects (Make web calls)
 - DO NOT update state (triggers re-render)
+
+--------------------------------------------------
+[Component Update Lifecycle]
+
+getDerivedStateFromProps()
+
+shouldComponentUpdate()
+-may cancel updating process
+
+render()
+
+Update Child Component props
+
+getSnapshotBeforeUpdate()
+
+componentDidUpdate() **** (Important) ****
+-Dont update state
+
+
+
