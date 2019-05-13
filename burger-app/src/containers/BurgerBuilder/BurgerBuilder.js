@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -94,7 +95,7 @@ class BurgerBuilder extends Component {
             },
             deliveryMethod: "fastest"
         }
-        instance.post('/orders.json', order)
+        instance.post('/orders', order)
         .then( response => this.setState({loading: false, purchasing: false}))
         .catch( error => this.setState({loading: false, purchasing: false}));
     }
@@ -134,4 +135,4 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, instance);
