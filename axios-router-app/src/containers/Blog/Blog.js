@@ -36,6 +36,7 @@ class Blog extends Component {
           <Route path="/" exact component={Posts} />
           <Route path="/new-post" exact component={NewPost} />
           <Route path="/posts/:postId" exact component={FullPost} />
+          <Route render={() => <h1>404: Page Not Found</h1>} />
         </Switch>
       </div>
     );
